@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    int jumpsLeft = 0; 
     float playerFloater = 0; // how much the player goes up per frame
+    public float downwardGravityCap = -0.01f;
+    public float jumpFadeOff = 0.01f; // how much playerFloater is decreased by each frame
     public float jumpInc = 0.3f; // what playerFloater is set to initially
-    int jumpsLeft = 0;
-    public int totalJumps = 1;
-    public float jumpFadeOff = 0.01f;
+    public int totalJumps = 1; // change to control how many jumps the player has
     bool grounded = false;
 
 
@@ -39,16 +40,16 @@ public class PlayerMovement : MonoBehaviour
             Vector3 pos = transform.position;
             pos.y += playerFloater;
             transform.position = pos;
-            if(playerFloater >= -0.5)
+            if(playerFloater >= downwardGravityCap)
                 playerFloater -= jumpFadeOff;
         }
 
-        if (Input.GetKey("d")){
+        if (Input.GetKey("d")|| Input.GetKey("right")) {
             Vector3 pos = transform.position;
             pos.x += 0.075f;
             transform.position = pos;
         }
-        if (Input.GetKey("a")){
+        if (Input.GetKey("a")|| Input.GetKey("left")) {
             Vector3 pos = transform.position;
             pos.x -= 0.075f;
             transform.position = pos;

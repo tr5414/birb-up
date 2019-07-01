@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 26169703}
   - component: {fileID: 26169708}
   m_Layer: 0
-  m_Name: Cube (1)
+  m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -241,9 +241,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99e0ffde21fda5741ac0f8ed2d00346d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  downwardGravityCap: -0.05
+  jumpFadeOff: 0.009
   jumpInc: 0.18
   totalJumps: 2
-  jumpFadeOff: 0.009
 --- !u!1 &663185641
 GameObject:
   m_ObjectHideFlags: 0
