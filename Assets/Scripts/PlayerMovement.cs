@@ -20,7 +20,13 @@ public class PlayerMovement : MonoBehaviour
         }
 
     }
+    void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.tag == "Floor") {
+            grounded = false;
+        }
 
+    }
     // Update is called once per frame
     void Update()
     {
@@ -29,11 +35,12 @@ public class PlayerMovement : MonoBehaviour
             playerFloater = jumpInc;
             grounded = false;
         }
-        if (playerFloater >= -0.5&&!grounded) {
+        if (!grounded) {
             Vector3 pos = transform.position;
             pos.y += playerFloater;
             transform.position = pos;
-            playerFloater -= jumpFadeOff;
+            if(playerFloater >= -0.5)
+                playerFloater -= jumpFadeOff;
         }
 
         if (Input.GetKey("d")){
