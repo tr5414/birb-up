@@ -11,7 +11,7 @@ public class CameraZoomOut : MonoBehaviour
     public GameObject player;
 
     public float defaultSize;
-    public float horizontalCameraBuffer = 5;
+    public float horizontalCameraBuffer = 5; //Distance from horizontal edge of camera you are before it zooms out. This allows you to move within the camera bounds without the zoom changing 
 
     // Start is called before the first frame update
     void Start()
@@ -26,18 +26,18 @@ public class CameraZoomOut : MonoBehaviour
     void Update()
     {
         //X
-        print("play:"+ player.transform.position.x + " cam:" + cam.transform.position.x + cameraScript.orthographicSize);
-        print("cam:" + cameraScript.orthographicSize + " def:" + defaultSize);
+        print("player pos.x:"+ player.transform.position.x + " cam pos.x + ortho size:" + cam.transform.position.x + cameraScript.orthographicSize);
+        print("cam ortho size:" + cameraScript.orthographicSize + " default size (The smallest it should go) :" + defaultSize);
         if (Mathf.Abs(player.transform.position.x) + horizontalCameraBuffer > cam.transform.position.x + cameraScript.orthographicSize)
         {
-            print("expand x");
+            print("expanding camera x");
             cameraScript.orthographicSize += 0.1f;
 
             //if you are below camera bounds, minimize camera view. DO NOT do so though, if the camera is at it's defaultSize (So you don't get super zoomed in)
         }else if (Mathf.Abs(player.transform.position.x) - horizontalCameraBuffer < cam.transform.position.x + cameraScript.orthographicSize
           && cameraScript.orthographicSize > defaultSize)
         {
-            print("contract x");
+            print("contracting camera x");
             cameraScript.orthographicSize -= 0.1f;
         }
         
