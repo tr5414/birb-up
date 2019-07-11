@@ -6,3 +6,5 @@ Temp
 .DS_Store
 *.csproj
 *.sln
+.vs
+obj
