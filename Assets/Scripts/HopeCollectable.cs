@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class HopeCollectable : MonoBehaviour
 {
-    public GameObject[] spawnPoints;
-    public List<GameObject> openSpawnPoints;
+    public GameObject[] spawnPoints; //array of valid spawn points for collectables
+    public List<GameObject> openSpawnPoints; //list of points available on its use
     public int index;
     public HopeSpawnPoint spawnPoint;
     public PlayerMovement playerMovement;
@@ -40,7 +40,7 @@ public class HopeCollectable : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             playerMovement = collision.gameObject.GetComponent<PlayerMovement>();
-            playerMovement.jumpInc += 0.1f;
+            playerMovement.gainedHope();
             Destroy(gameObject);
         }
 
