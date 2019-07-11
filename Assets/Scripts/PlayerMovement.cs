@@ -25,13 +25,29 @@ public class PlayerMovement : MonoBehaviour
 
     bool grounded = false;
 
+    public GameObject cam;
+
+
+    void Start()
+    {
+        if (!cam) { cam = GameObject.Find("Main Camera"); } //Find camera in level if it is not specified in Inspector
+    }
 
     void OnCollisionEnter(Collision collision)
     {
+
+
+        if (!grounded)
+        {
+            ShakeCamera(this.GetComponent<Rigidbody>().velocity.y);
+        }
+
         if (collision.gameObject.tag == "Floor") {
             jumpsLeft = totalJumps;
             grounded = true;
         }
+
+        
 
     }
     void OnCollisionExit(Collision collision)
@@ -80,6 +96,14 @@ public class PlayerMovement : MonoBehaviour
             }
         }
     }
+
+
+    //Shake the camera based upon y velocity
+    void ShakeCamera(float y)
+    {
+        cam.GetComponent<CameraShake>().ShakeCamera(Mathf.Abs(y) * 20.0f, 4.0f);
+    }
+
 
     // Update is called once per frame
     void Update()
